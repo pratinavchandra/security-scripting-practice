@@ -1,7 +1,7 @@
 ## Scenario
 Given a log file containing timestamped entries of network connections:
 - Extract all unique destination IP addresses
-- Print all connections that contain http/ssl traffic over non-standard ports, also change the timestamp from unix epoch to a human readable date format
+- Print all connections that contain http/ssl traffic over non-standard ports, also change the timestamp from unix epoch to a human readable format
   
 ## Concepts
 Malicious pcap samples: <a href="https://www.malware-traffic-analysis.net/">Malware Traffic Analysis</a>
