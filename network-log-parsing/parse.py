@@ -1,5 +1,6 @@
 import json
 import datetime
+import collections
 def nonstandard_traffic(log_line):
     timestamp = datetime.datetime.fromtimestamp(log_line["ts"]).strftime('%Y-%m-%d %H:%M:%S')
     if log_line["proto"] == "tcp":
@@ -7,12 +8,14 @@ def nonstandard_traffic(log_line):
             log_line["ts"]=timestamp
             print(log_line)
 file_path = "conn.log"
-uniq_destips=[]
+destips=[]
 with open(file_path, 'r') as logs:
     for line in logs:
         log_line = json.loads(line)
-        if log_line["id.resp_h"] not in uniq_destips:
-            uniq_destips.append(log_line["id.resp_h"])
+        destips.append(log_line["id.resp_h"])
         nonstandard_traffic(log_line)
 print("")
-print(uniq_destips)
+print(set(destips))
+print("")
+print(max(collections.Counter(destips).items()))
+print("")
